@@ -14,10 +14,8 @@ defmodule AdsClient.Search do
     params = build_params(query, opts)
 
     case HTTP.get("/search/query", query: params) do
-      {:ok, %{body: body}} ->
-        {:ok, SearchResult.from_api(body)}
-      {:error, _} = error ->
-        error
+      {:ok, %{body: body}} -> {:ok, SearchResult.from_api(body)}
+      {:error, _} = error -> error
     end
   end
 
@@ -42,9 +40,7 @@ defmodule AdsClient.Search do
               next_start = start + rows
               has_more = next_start < num_found
               {docs, {next_start, has_more}}
-
-            {:error, error} ->
-              raise error
+            {:error, error} -> raise error
           end
         else
           {:halt, state}
@@ -67,10 +63,8 @@ defmodule AdsClient.Search do
       }
 
       case HTTP.post("/search/bigquery", body: body) do
-        {:ok, %{body: response}} ->
-          {:ok, SearchResult.from_api(response)}
-        {:error, _} = error ->
-          error
+        {:ok, %{body: response}} -> {:ok, SearchResult.from_api(response)}
+        {:error, _} = error -> error
       end
     end
   end
@@ -90,8 +84,6 @@ defmodule AdsClient.Search do
   defp add_optional_param(params, key, value), do: Map.put(params, key, value)
 
   defp format_fl(nil), do: nil
-  defp format_fl(fields) when is_list(fields) do
-    Enum.map_join(fields, ",", &to_string/1)
-  end
+  defp format_fl(fields) when is_list(fields), do: Enum.map_join(fields, ",", &to_string/1)
   defp format_fl(fields) when is_binary(fields), do: fields
 end
