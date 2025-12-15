@@ -7,7 +7,7 @@ defmodule AdsClient.Metrics do
   alias AdsClient.Metrics.Result
 
   @spec metrics(list(String.t()), keyword()) ::
-    {:ok, Result.t()} | {:error, Error.t()}
+          {:ok, Result.t()} | {:error, Error.t()}
   def metrics(bibcodes, opts \\ []) when is_list(bibcodes) do
     body = %{
       "bibcodes" => bibcodes,
@@ -15,10 +15,8 @@ defmodule AdsClient.Metrics do
     }
 
     case HTTP.post("/metrics", body: body) do
-      {:ok, %{body: response}} ->
-        {:ok, Result.from_api(response)}
-      {:error, _} = error ->
-        error
+      {:ok, %{body: response}} -> {:ok, Result.from_api(response)}
+      {:error, _} = error -> error
     end
   end
 
@@ -37,20 +35,20 @@ defmodule AdsClient.Metrics.Result do
   """
 
   @type t :: %__MODULE__{
-    citation_count: integer(),
-    refereed_citation_count: integer(),
-    h_index: integer(),
-    i10_index: integer(),
-    m_index: float(),
-    g_index: integer(),
-    read_count: integer(),
-    total_number_of_reads: integer(),
-    average_number_of_reads: float(),
-    median_number_of_reads: float(),
-    total_number_of_downloads: integer(),
-    average_number_of_downloads: float(),
-    median_number_of_downloads: float()
-  }
+          citation_count: integer(),
+          refereed_citation_count: integer(),
+          h_index: integer(),
+          i10_index: integer(),
+          m_index: float(),
+          g_index: integer(),
+          read_count: integer(),
+          total_number_of_reads: integer(),
+          average_number_of_reads: float(),
+          median_number_of_reads: float(),
+          total_number_of_downloads: integer(),
+          average_number_of_downloads: float(),
+          median_number_of_downloads: float()
+        }
 
   defstruct [
     :citation_count,
@@ -73,8 +71,6 @@ defmodule AdsClient.Metrics.Result do
   end
 
   defp atomize_keys(map) when is_map(map) do
-    Map.new(map, fn {k, v} ->
-      {String.to_atom(k), v}
-    end)
+    Map.new(map, fn {k, v} -> {String.to_atom(k), v} end)
   end
 end
