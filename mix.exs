@@ -41,6 +41,9 @@ defmodule AdsClient.MixProject do
       # JSON parsing
       {:jason, "~> 1.4"},
 
+      # SSL certificates
+      {:castore, "~> 1.0"},
+
       # Telemetry
       {:telemetry, "~> 1.2"},
       {:telemetry_metrics, "~> 0.6", optional: true},
