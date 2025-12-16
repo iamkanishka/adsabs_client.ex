@@ -1,9 +1,9 @@
-defmodule AdsClient.Search do
+defmodule AdsabsClient.Search do
   @moduledoc """
   Search functionality for ADS API.
   """
 
-  alias AdsClient.{HTTP, SearchResult, Error}
+  alias AdsabsClient.{HTTP, SearchResult, Error}
 
   @default_rows 10
   @max_rows 2000
