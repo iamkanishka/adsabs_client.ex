@@ -1,7 +1,7 @@
-defmodule AdsClient.HTTP do
+defmodule AdsabsClient.HTTP do
   @moduledoc false
 
-  alias AdsClient.{Config, Error}
+  alias AdsabsClient.{Config, Error}
 
   def request(method, path, opts \\ []) do
     config = Config.get() |> Config.validate!()
