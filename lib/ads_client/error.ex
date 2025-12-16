@@ -1,4 +1,4 @@
-defmodule AdsClient.Error do
+defmodule AdsabsClient.Error do
   @moduledoc """
   Error struct for ADS API errors.
 
