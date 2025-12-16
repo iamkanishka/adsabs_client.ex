@@ -1,4 +1,4 @@
-defmodule AdsClient.Adapter do
+defmodule AdsabsClient.Adapter do
   @moduledoc """
   Behaviour for HTTP adapters.
 
@@ -13,5 +13,5 @@ defmodule AdsClient.Adapter do
   @type response :: %{status: integer(), body: any(), headers: headers()}
 
   @callback request(method(), url(), headers(), body(), opts()) ::
-    {:ok, response()} | {:error, AdsClient.Error.t()}
+    {:ok, response()} | {:error, AdsabsClient.Error.t()}
 end
