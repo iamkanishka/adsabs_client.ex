@@ -1,9 +1,9 @@
-defmodule AdsClient.Export do
+defmodule AdsabsClient.Export do
   @moduledoc """
   Export API for bibliographic formats.
   """
 
-  alias AdsClient.{HTTP, Error}
+  alias AdsabsClient.{HTTP, Error}
 
   @formats %{
     bibtex: "bibtex",
@@ -26,28 +26,26 @@ defmodule AdsClient.Export do
   }
 
   @spec export(list(String.t()), atom(), keyword()) ::
-    {:ok, String.t()} | {:error, Error.t()}
+          {:ok, String.t()} | {:error, Error.t()}
   def export(bibcodes, format, opts \\ []) when is_list(bibcodes) and is_atom(format) do
     format_str = Map.get(@formats, format)
 
     unless format_str do
-       {:error, Error.new(:validation, "Invalid export format: #{format}")}
+      {:error, Error.new(:validation, "Invalid export format: #{format}")}
     end
 
-    body = %{
-      "bibcode" => bibcodes,
-      "sort" => Keyword.get(opts, :sort, "date desc"),
-      "format" => format_str
-    }
-    |> add_format_options(opts)
+    body =
+      %{
+        "bibcode" => bibcodes,
+        "sort" => Keyword.get(opts, :sort, "date desc"),
+        "format" => format_str
+      }
+      |> add_format_options(opts)
 
     case HTTP.post("/export/#{format_str}", body: body) do
-      {:ok, %{body: response}} when is_map(response) ->
-        {:ok, response["export"]}
-      {:ok, %{body: response}} when is_binary(response) ->
-        {:ok, response}
-      {:error, _} = error ->
-        error
+      {:ok, %{body: response}} when is_map(response) -> {:ok, response["export"]}
+      {:ok, %{body: response}} when is_binary(response) -> {:ok, response}
+      {:error, _} = error -> error
     end
   end
 
