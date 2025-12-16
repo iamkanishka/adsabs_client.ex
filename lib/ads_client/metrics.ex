@@ -1,10 +1,10 @@
-defmodule AdsClient.Metrics do
+defmodule AdsabsClient.Metrics do
   @moduledoc """
   Metrics API for bibliometric indicators.
   """
 
-  alias AdsClient.{HTTP, Error}
-  alias AdsClient.Metrics.Result
+  alias AdsabsClient.{HTTP, Error}
+  alias AdsabsClient.Metrics.Result
 
   @spec metrics(list(String.t()), keyword()) ::
           {:ok, Result.t()} | {:error, Error.t()}
@@ -29,7 +29,7 @@ defmodule AdsClient.Metrics do
   end
 end
 
-defmodule AdsClient.Metrics.Result do
+defmodule AdsabsClient.Metrics.Result do
   @moduledoc """
   Metrics result struct.
   """
