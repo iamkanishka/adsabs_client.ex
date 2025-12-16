@@ -1,11 +1,11 @@
-defmodule AdsClient.Adapter.Req do
+defmodule AdsabsClient.Adapter.Req do
   @moduledoc """
   Req-based HTTP adapter with retries, backoff, and telemetry.
   """
 
-  @behaviour AdsClient.Adapter
+  @behaviour AdsabsClient.Adapter
 
-  alias AdsClient.{Error, Config}
+  alias AdsabsClient.{Error, Config}
 
   require Logger
 
@@ -18,13 +18,13 @@ defmodule AdsClient.Adapter.Req do
     metadata = %{method: method, url: url, adapter: __MODULE__}
     start_time = System.monotonic_time()
 
-    :telemetry.execute([:ads_client, :request, :start], %{}, metadata)
+    :telemetry.execute([:adsabs_client, :request, :start], %{}, metadata)
 
     case Req.request(req_opts) do
       {:ok, %Req.Response{status: status, body: body, headers: headers}} when status in 200..299 ->
         duration = System.monotonic_time() - start_time
         :telemetry.execute(
-          [:ads_client, :request, :stop],
+          [:adsabs_client, :request, :stop],
           %{duration: duration},
           Map.put(metadata, :status, status)
         )
@@ -34,7 +34,7 @@ defmodule AdsClient.Adapter.Req do
         duration = System.monotonic_time() - start_time
         error = build_error(status, body)
         :telemetry.execute(
-          [:ads_client, :request, :stop],
+          [:adsabs_client, :request, :stop],
           %{duration: duration},
           Map.merge(metadata, %{status: status, error: error.type})
         )
@@ -48,7 +48,7 @@ defmodule AdsClient.Adapter.Req do
           details: %{exception: exception}
         }
         :telemetry.execute(
-          [:ads_client, :request, :exception],
+          [:adsabs_client, :request, :exception],
           %{duration: duration},
           Map.merge(metadata, %{error: error.type, exception: exception})
         )
