@@ -1,8 +1,8 @@
-defmodule AdsClientTest do
+defmodule AdsabsClientTest do
   use ExUnit.Case
-  doctest AdsClient
+  doctest AdsabsClient
 
   test "greets the world" do
-    assert AdsClient.hello() == :world
+    assert AdsabsClient.hello() == :world
   end
 end
