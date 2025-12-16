@@ -1,7 +1,7 @@
 import Config
 
-config :ads_client,
-  adapter: AdsClient.Adapter.Req,
+config :adsabs_client,
+  adapter: AdsabsClient.Adapter.Req,
   base_url: "https://api.adsabs.harvard.edu/v1",
   default_timeout: 30_000,
   max_retries: 3,
