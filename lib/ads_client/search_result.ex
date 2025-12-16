@@ -1,4 +1,4 @@
-defmodule AdsClient.SearchResult do
+defmodule AdsabsClient.SearchResult do
   @moduledoc """
   Search result struct.
   """
