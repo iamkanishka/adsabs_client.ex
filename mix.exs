@@ -28,7 +28,7 @@ defmodule ADSABSClient.MixProject do
       ],
       # Hex.pm package info
       description:
-        "A fully-featured, production-ready Elixir client for the SAO/NASA Astrophysics Data System (ADS) API v1.",
+        "A fully-featured, production-ready Elixir client for the SAO/NASA Astrophysics Data System (ADS) API v2.",
       package: package(),
       # ExDoc
       name: "ADSABSClient",
