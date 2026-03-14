@@ -1,7 +1,6 @@
-
-# Dialyzer ignore patterns
-# Format: [{:warn_type, source_file_pattern, line_number_or_range}]
 [
-  # Ignore warnings from generated code in test support
-  # {:warn_return_no_exit, ~r/test\/support/, :_}
+  ~r/Function ExUnit\.Callbacks\.__merge__\/4 does not exist/,
+  ~r/Function ExUnit\.Callbacks\.__noop__\/0 does not exist/,
+  ~r/Function ExUnit\.CaseTemplate\.__proxy__\/2 does not exist/,
+  ~r/Function ExUnit\.Callbacks\.on_exit\/1 does not exist/,
 ]

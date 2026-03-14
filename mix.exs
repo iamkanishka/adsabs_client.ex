@@ -24,7 +24,8 @@ defmodule ADSABSClient.MixProject do
       dialyzer: [
         plt_file: {:no_warn, "priv/plts/dialyzer.plt"},
         plt_add_apps: [:mix],
-        flags: [:error_handling, :missing_return, :underspecs]
+        flags: [:error_handling, :missing_return, :underspecs],
+        ignore_warnings: ".dialyzer_ignore.exs"
       ],
       # Hex.pm package info
       description:
