@@ -128,8 +128,7 @@ defmodule ADSABSClient.Test.Fixtures do
         "owner" => "user@example.com"
       },
       "documents" => ["2016PhRvL.116f1102A", "2019ApJ...882L..24A"],
-      "solr" => %{},
-      "metadata" => %{}
+      "solr" => %{}
     }
   end
 
