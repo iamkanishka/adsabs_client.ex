@@ -79,7 +79,7 @@ defmodule ADSABSClient.MixProject do
     [
       "test.all": ["test", "dialyzer"],
       lint: ["format --check-formatted", "credo --strict"],
-      docs: ["docs", "docs.open"],
+      docs: ["docs"],
       quality: [
         "format --check-formatted",
         "credo --strict",
